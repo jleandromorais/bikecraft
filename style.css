@@ -17,6 +17,8 @@ a{
 }
 .header{
     display: flex;/* coloca um texto um do lado do outro*/
+    flex-wrap: wrap;/* os intens se adptam */
+    gap: 20px;
     justify-content: space-between;/*consegue botar o menu e o texto um em uma ponta e o outro na outra*/
       align-items:  center;/*alinha os itens ao centro*/
     padding: 20px;
@@ -30,12 +32,57 @@ a{
     2-uma para organizar o display,as ordens
     3-menu ,parte dos botoes*/
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 .header-menu a{
     padding: 16px 0px;
     display: inline-block;/*inline-block uma escolha útil quando você quer combinar elementos lado a lado, mas ainda quer controlar seu tamanho e espaçamento.*/
     color: #f7f7f7;
     font-size: 18px;
+    position: relative; /*fez isso para  .header-menu a:hover:after{,pois esse é o pai mais proximp*/
 
 }
+.header-menu a:after{
+    display: block; /*faz com que o elemento se torne em bloco*/
+    content: "";
+    height: 2px;
+    background: #f7f7f7;
+    width: 0px;
+    margin-top: 4px;
+}
+.header-menu a:hover:after{
+    width: 100%;
+    transition: 0.3s;
+    position: absolute;/*tira ele do fluxo e fica em ralção ao pai que tiver o position relative mais proximo */
+
+    
+}
+@media(max-width:800px){
+    .header-menu{
+        gap: 20px;
+    }
+    
+    
+    .header-menu a {
+        background: #111;
+        padding: 12px  16px;/*Aq se cria um botão*/
+        border-radius: 4px;
+    }
+    .header-menu a:hover{
+        background-color: #2e2e2e;
+    }
+    .header.a:after{
+        display: none;
+    }
+}
+@media(max-width:600px){
+    .header-menu{
+        gap: 12px;
+    }
+    .header-menu a{
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
